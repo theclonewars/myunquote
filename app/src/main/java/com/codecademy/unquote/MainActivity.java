@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // TODO 3-F: displayQuestion(Question question) {...}
+    //Show question
     public void displayQuestion(Question question){
         questionImageView.setImageResource(question.imageId);
         questionTextView.setText(question.questionText);
@@ -104,11 +105,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     // TODO 3-C: displayQuestionsRemaining(int questionRemaining) {...}
+    //Show remaining question count
     public void displayQuestionsRemaining(int questionsRemaining){
         questionsRemainingTextView.setText(String.valueOf(questionsRemaining));
     }
 
     // TODO 4-A: onAnswerSelected(int answerSelected) {...}
+    //Action when Answer is selected
     public void onAnswerSelected(int answerSelected) {
         Question currentQuestion = getCurrentQuestion();
         currentQuestion.playerAnswer = answerSelected;
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        //Remove Question from Question list
         questions.remove(currentQuestion);
 
         // TODO 3-D.i: Uncomment the line below after implementing displayQuestionsRemaining(int)
@@ -153,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
             String gameOverMessage = getGameOverMessage(totalCorrect, totalQuestions);
 
             // TODO 5-D: Show a popup instead
+            //Pop UP with game result
             AlertDialog.Builder gameOverDialogBuilder = new AlertDialog.Builder(MainActivity.this);
             gameOverDialogBuilder.setCancelable(false);
             gameOverDialogBuilder.setTitle("Game Over!");
@@ -179,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         questions = new ArrayList<>();
 
         // TODO 2-H: Provide actual drawables for each of these questions!
+        //Content of each question
         Question question0 = new Question(R.drawable.img_quote_0, "Pretty good advice, and perhaps a scientist did say it… Who actually did?",
                 "Albert Einstein", "Isaac Newton", "Rita Mae Brown", "Rosalind Franklin", 2);
 
@@ -245,12 +251,14 @@ public class MainActivity extends AppCompatActivity {
         Question firstQuestion = chooseNewQuestion();
 
         // TODO 3-D.ii: Uncomment the line below after implementing displayQuestionsRemaining(int)
+        //Update and show remaining question count
         displayQuestionsRemaining(questions.size());
 
         // TODO 3-H.ii: Uncomment after implementing displayQuestion(Question)
         displayQuestion(firstQuestion);
     }
 
+    //randomize selection of question
     Question chooseNewQuestion() {
         int newQuestionIndex = generateRandomNumber(questions.size());
         currentQuestionIndex = newQuestionIndex;
@@ -268,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
         return currentQuestion;
     }
 
+    //Content of Game Result Pop UP
     String getGameOverMessage(int totalCorrect, int totalQuestions) {
         if (totalCorrect == totalQuestions) {
             return "You got all " + totalQuestions + " right! You won!";
